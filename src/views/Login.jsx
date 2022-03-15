@@ -14,36 +14,59 @@ import SinnohPoke from "../assets/images/pokedex-sinnoh.png";
 import Logo from "../assets/images/logo-login.svg";
 
 const Login = () => {
-  const [region, setRegion] = useState(false);
+  const [region, setRegion] = useState("");
 
   const handleRegion = () => {
     setRegion(!region);
   };
-
+  console.log(region);
+  const showValue = (event) => setRegion(event.target.value);
   return (
     <ContainerLogin>
       <BackgroundLogin src={WallpaperLogin} />
       <LogoLogin src={Logo} alt="logo for login" />
-      <OptionRegion clicked={region}>
-        <img src={KantoPoke} alt="pokedex region" />
-        <input type="checkbox" onClick={handleRegion} />
-        Kanto
-      </OptionRegion>
-      <OptionRegion>
-        <img src={JohtoPoke} alt="pokedex region" />
-        <input type="checkbox" onClick={handleRegion} />
-        Johto
-      </OptionRegion>
-      <OptionRegion>
-        <img src={HoennPoke} alt="pokedex region" />
-        <input type="checkbox" onClick={handleRegion} />
-        Hoenn
-      </OptionRegion>
-      <OptionRegion>
-        <img src={SinnohPoke} alt="pokedex region" />
-        <input type="checkbox" onClick={handleRegion} />
-        Sinnoh
-      </OptionRegion>
+      <div onChange={showValue}>
+        <OptionRegion clicked={region === "Kanto"}>
+          <img src={KantoPoke} alt="pokedex region" />
+          <input
+            type="radio"
+            value="Kanto"
+            name="Kanto"
+            checked={region === "Kanto"}
+          />
+          Kanto
+        </OptionRegion>
+        <OptionRegion clicked={region === "Johto"}>
+          <img src={JohtoPoke} alt="pokedex region" />
+          <input
+            type="radio"
+            value="Johto"
+            name="Johto"
+            checked={region === "Johto"}
+          />
+          Johto
+        </OptionRegion>
+        <OptionRegion clicked={region === "Hoenn"}>
+          <img src={HoennPoke} alt="pokedex region" />
+          <input
+            type="radio"
+            value="Hoenn"
+            name="Hoenn"
+            checked={region === "Hoenn"}
+          />
+          Hoenn
+        </OptionRegion>
+        <OptionRegion clicked={region === "Sinnoh"}>
+          <img src={SinnohPoke} alt="pokedex region" />
+          <input
+            type="radio"
+            value="Sinnoh"
+            name="Sinnoh"
+            checked={region === "Sinnoh"}
+          />
+          Sinnoh
+        </OptionRegion>
+      </div>
 
       <MessageBox>Select a region to start playing</MessageBox>
     </ContainerLogin>
