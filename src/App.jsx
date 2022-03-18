@@ -7,8 +7,12 @@ import { BrowserRouter } from "react-router-dom";
 
 import { Route, Routes } from "react-router-dom";
 import Login from "./views/Login";
+import Home from "./views/Home";
 
 const App = () => {
+  const [region, setRegion] = useState("");
+
+  //----------------------------------------------
   const [pokemonToCatch, setPokemonToCatch] = useState();
   const [allTheNames, setAllTheNames] = useState({});
   const [optionsToCatch, setOptionsToCatch] = useState([]);
@@ -178,7 +182,11 @@ const App = () => {
       <GlobalStyles />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route
+            path="/"
+            element={<Login region={region} setRegion={setRegion} />}
+          />
+          <Route path="/home" element={<Home region={region} />} />
           {/* <button onClick={() => console.log(optionsToCatch)}>
             CHECKING OPTIONS NAME
           </button>

@@ -4,6 +4,7 @@ import {
   LogoLogin,
   MessageBox,
   OptionRegion,
+  StartButton,
 } from "./Login.style";
 import React, { useState } from "react";
 import WallpaperLogin from "../assets/images/wallpaper-login.jpg";
@@ -12,15 +13,24 @@ import JohtoPoke from "../assets/images/pokedex-johto.png";
 import HoennPoke from "../assets/images/pokedex-hoenn.png";
 import SinnohPoke from "../assets/images/pokedex-sinnoh.png";
 import Logo from "../assets/images/logo-login.svg";
+import { useNavigate } from "react-router-dom";
 
-const Login = () => {
-  const [region, setRegion] = useState("");
+const Login = ({ region, setRegion }) => {
+  const [readyToPlay, setReadyToPlay] = useState(false);
 
   const handleRegion = () => {
     setRegion(!region);
   };
-  console.log(region);
+
+  const navigate = useNavigate();
+
   const showValue = (event) => setRegion(event.target.value);
+  const checkboxHandler = (event) => setReadyToPlay(event.target.checked);
+  //Navegar a Home
+  const startPlay = () => {
+    navigate("/home");
+  };
+
   return (
     <ContainerLogin>
       <BackgroundLogin src={WallpaperLogin} />
@@ -33,6 +43,7 @@ const Login = () => {
             value="Kanto"
             name="Kanto"
             checked={region === "Kanto"}
+            onChange={checkboxHandler}
           />
           Kanto
         </OptionRegion>
@@ -43,6 +54,7 @@ const Login = () => {
             value="Johto"
             name="Johto"
             checked={region === "Johto"}
+            onChange={checkboxHandler}
           />
           Johto
         </OptionRegion>
@@ -53,6 +65,7 @@ const Login = () => {
             value="Hoenn"
             name="Hoenn"
             checked={region === "Hoenn"}
+            onChange={checkboxHandler}
           />
           Hoenn
         </OptionRegion>
@@ -63,12 +76,16 @@ const Login = () => {
             value="Sinnoh"
             name="Sinnoh"
             checked={region === "Sinnoh"}
+            onChange={checkboxHandler}
           />
           Sinnoh
         </OptionRegion>
       </div>
-
-      <MessageBox>Select a region to start playing</MessageBox>
+      {!readyToPlay ? (
+        <MessageBox>Select a region to start playing</MessageBox>
+      ) : (
+        <StartButton onClick={startPlay}>Play</StartButton>
+      )}
     </ContainerLogin>
   );
 };

@@ -105,3 +105,19 @@ export const MessageBox = styled.p`
     background-color: #2d1f1f;
   }
 `;
+
+export const StartButton = styled.button`
+  width: 17rem;
+  height: 2.65rem;
+  margin-top: 3rem;
+  font-size: 1.3rem;
+  line-height: 2.2rem;
+  vertical-align: middle;
+  color: #ecf7fd;
+  text-shadow: 1px 1px 0px #807f84;
+  background: linear-gradient(180deg, #3892dc 38.02%, #82bfda 100%);
+  border: 1.5px solid #315670;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset -1px -1px 0px 2px #366da0,
+    inset 2px 2px 1px 1px #7dbbe4;
+  border-radius: 13px;
+`;
