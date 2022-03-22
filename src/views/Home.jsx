@@ -6,6 +6,7 @@ import {
   ContainerGame,
   OptionPokemon,
   OptionsContainer,
+  OptionWrapper,
   Pokeball,
   PokeballButton,
   PokedexContainer,
@@ -25,13 +26,24 @@ const Home = ({ region }) => {
         {/* <PokedexMachine src={PokedexPartRight} /> */}
       </PokedexContainer>
       <OptionsContainer>
-        {/* //TODO     AGREGAR un contenedor para el boton de la opcion y englobar OptionPokemon, Pokeball */}
-        <Pokeball>
-          <PokeballButton />
-        </Pokeball>
-        <OptionPokemon>Squirtle</OptionPokemon>
-        <OptionPokemon>Pikachu</OptionPokemon>
-        <OptionPokemon>Moltres</OptionPokemon>
+        <OptionWrapper>
+          <Pokeball>
+            <PokeballButton />
+          </Pokeball>
+          <OptionPokemon>Squirtle</OptionPokemon>
+        </OptionWrapper>
+        <OptionWrapper>
+          <Pokeball>
+            <PokeballButton />
+          </Pokeball>
+          <OptionPokemon>Pikachu</OptionPokemon>
+        </OptionWrapper>
+        <OptionWrapper>
+          <Pokeball>
+            <PokeballButton />
+          </Pokeball>
+          <OptionPokemon>Moltres</OptionPokemon>
+        </OptionWrapper>
       </OptionsContainer>
     </ContainerGame>
   );

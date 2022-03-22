@@ -58,11 +58,10 @@ export const OptionsContainer = styled.div`
   height: 8em;
 `;
 
-export const OptionPokemon = styled.div`
+export const OptionPokemon = styled.button`
   float: right;
   width: 80%;
   height: 2.65rem;
-  margin-top: 0.75rem;
   text-align: center;
   font-size: 1.3rem;
   line-height: 2.2rem;
@@ -82,10 +81,10 @@ export const OptionPokemon = styled.div`
 
 const shake = keyframes`
    0 { transform: translate(0, 0) rotate(0); }
-    20% { transform: translate(-10px, 0) rotate(-20deg); }
-    30% { transform: translate(10px, 0) rotate(20deg); }
-    50% { transform: translate(-10px, 0) rotate(-10deg); }
-    60% { transform: translate(10px, 0) rotate(10deg); }
+    20% { transform: translate(-6px, 0) rotate(-20deg); }
+    30% { transform: translate(6px, 0) rotate(20deg); }
+    50% { transform: translate(-6px, 0) rotate(-10deg); }
+    60% { transform: translate(6px, 0) rotate(10deg); }
     100% { transform: translate(0, 0) rotate(0); }
 `;
 
@@ -127,7 +126,7 @@ export const Pokeball = styled.div`
 
 const blink = keyframes`
   from { background: #eee;}
-    to { background: #e74c3c; }
+    to { background: #dc0a2d; }
 `;
 
 export const PokeballButton = styled.span`
@@ -146,5 +145,22 @@ export const PokeballButton = styled.span`
 
   &:hover {
     animation-play-state: running;
+  }
+`;
+
+export const OptionWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 0.75rem;
+
+  &:hover {
+    & ${OptionPokemon} {
+      background: #787878;
+    }
+    & ${Pokeball}, ${PokeballButton} {
+      animation-play-state: running;
+    }
   }
 `;

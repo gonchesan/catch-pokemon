@@ -109,7 +109,7 @@ export const MessageBox = styled.p`
 export const StartButton = styled.button`
   width: 17rem;
   height: 2.65rem;
-  margin-top: 3rem;
+  margin-top: 2.7rem;
   font-size: 1.3rem;
   line-height: 2.2rem;
   vertical-align: middle;
