@@ -159,9 +159,6 @@ const App = () => {
     }
   }, [pokedex]);
 
-  const imgStyle = {
-    filter: "brightness(0%)",
-  };
   //* RETURN THE DATA CLEAR WITH THE REAL ID FROM POKEDEX
   const returnData = (array, index) => {
     let dataToFind = array.find((item) => item.id === index);
@@ -184,9 +181,26 @@ const App = () => {
         <Routes>
           <Route
             path="/"
-            element={<Login region={region} setRegion={setRegion} />}
+            element={
+              <Login
+                region={region}
+                setRegion={setRegion}
+                startGame={startGame}
+              />
+            }
           />
-          <Route path="/home" element={<Home region={region} />} />
+          <Route
+            path="/home"
+            element={
+              <Home
+                region={region}
+                pokemonToCatch={pokemonToCatch}
+                optionsToCatch={optionsToCatch}
+                allTheNames={allTheNames}
+                handleOptions={handleOptions}
+              />
+            }
+          />
           {/* <button onClick={() => console.log(optionsToCatch)}>
             CHECKING OPTIONS NAME
           </button>

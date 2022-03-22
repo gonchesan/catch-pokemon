@@ -15,7 +15,7 @@ import SinnohPoke from "../assets/images/pokedex-sinnoh.png";
 import Logo from "../assets/images/logo-login.svg";
 import { useNavigate } from "react-router-dom";
 
-const Login = ({ region, setRegion }) => {
+const Login = ({ region, setRegion, startGame }) => {
   const [readyToPlay, setReadyToPlay] = useState(false);
 
   const handleRegion = () => {
@@ -29,6 +29,7 @@ const Login = ({ region, setRegion }) => {
   //Navegar a Home
   const startPlay = () => {
     navigate("/home");
+    startGame();
   };
 
   return (

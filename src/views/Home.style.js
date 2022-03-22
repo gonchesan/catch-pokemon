@@ -4,7 +4,6 @@ import { keyframes } from "styled-components";
 export const ContainerGame = styled.div`
   display: flex;
   position: relative;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
   height: 100vh;
@@ -20,6 +19,7 @@ export const BackgroundGame = styled.img`
   background-color: blueviolet;
   object-fit: cover;
 `;
+
 export const PokedexContainer = styled.div`
   position: relative;
   display: flex;
@@ -28,31 +28,30 @@ export const PokedexContainer = styled.div`
 
 export const PokedexMachine = styled.img`
   z-index: 1;
-  width: 18em;
+  width: 17em;
   position: relative;
 `;
 
 export const PokedexMachineRight = styled.img`
   z-index: 1;
-  height: 20.5em;
+  height: 18.5em;
   position: absolute;
   bottom: 1em;
-  right: -77%;
+  right: -73%;
 `;
 
 export const PokedexScreen = styled.div`
   position: absolute;
   background-color: #3398da;
   border-radius: 7px;
-  width: 11.5em;
-  left: calc(50% - 6.6em);
-  bottom: calc(50% - 2.5em);
+  width: 11em;
+  left: calc(50% - 6.3em);
+  bottom: calc(50% - 2.7em);
   z-index: 5;
-  height: 8.15em;
+  height: 8em;
 `;
 
 export const OptionsContainer = styled.div`
-  background-color: lightblue;
   z-index: 55;
   width: 85vw;
   height: 8em;
@@ -64,6 +63,7 @@ export const OptionPokemon = styled.button`
   height: 2.65rem;
   text-align: center;
   font-size: 1.3rem;
+  text-transform: capitalize;
   line-height: 2.2rem;
   vertical-align: middle;
   color: #ecf7fd;
@@ -163,4 +163,16 @@ export const OptionWrapper = styled.div`
       animation-play-state: running;
     }
   }
+`;
+
+export const PokemonFigure = styled.img`
+  position: absolute;
+  border-radius: 7px;
+  width: 11.5em;
+  left: calc(50% - 6.6em);
+  bottom: calc(50% - 2.5em);
+  z-index: 5;
+  height: 8.15em;
+  object-fit: contain;
+  filter: brightness(0%);
 `;

@@ -13,20 +13,59 @@ import {
   PokedexMachine,
   PokedexMachineRight,
   PokedexScreen,
+  PokemonFigure,
 } from "./Home.style";
 
-const Home = ({ region }) => {
+const Home = ({
+  region,
+  pokemonToCatch,
+  optionsToCatch,
+  allTheNames,
+  handleOptions,
+}) => {
+  const returnData = (array, index) => {
+    let dataToFind = array.find((item) => item.id === index);
+    return dataToFind;
+  };
+
   return (
     <ContainerGame>
       <BackgroundGame src={WallpaperPlaying} />
       <PokedexContainer>
         <PokedexScreen />
+        {pokemonToCatch ? (
+          <PokemonFigure
+            src={pokemonToCatch.sprites.other.home.front_default}
+            alt={pokemonToCatch.name}
+          />
+        ) : null}
         <PokedexMachine src={PokedexPartLeft} alt="pokedex" />
         <PokedexMachineRight src={PokedexPartRight} alt="pokedexPartB" />
         {/* <PokedexMachine src={PokedexPartRight} /> */}
       </PokedexContainer>
       <OptionsContainer>
-        <OptionWrapper>
+        {optionsToCatch ? (
+          <>
+            {optionsToCatch.map((index) => {
+              return (
+                <OptionWrapper
+                  onClick={() =>
+                    handleOptions(returnData(allTheNames, index).id)
+                  }
+                  key={index}
+                >
+                  <Pokeball>
+                    <PokeballButton />
+                  </Pokeball>
+                  <OptionPokemon>
+                    {returnData(allTheNames, index).name}
+                  </OptionPokemon>
+                </OptionWrapper>
+              );
+            })}
+          </>
+        ) : null}
+        {/* <OptionWrapper>
           <Pokeball>
             <PokeballButton />
           </Pokeball>
@@ -43,7 +82,7 @@ const Home = ({ region }) => {
             <PokeballButton />
           </Pokeball>
           <OptionPokemon>Moltres</OptionPokemon>
-        </OptionWrapper>
+        </OptionWrapper> */}
       </OptionsContainer>
     </ContainerGame>
   );
