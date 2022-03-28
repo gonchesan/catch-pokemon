@@ -15,21 +15,20 @@ import SinnohPoke from "../assets/images/pokedex-sinnoh.png";
 import Logo from "../assets/images/logo-login.svg";
 import { useNavigate } from "react-router-dom";
 
-const Login = ({ region, setRegion, startGame }) => {
+const Login = ({ region, setRegion, getAllPokemons, SetIsRegionSelected }) => {
   const [readyToPlay, setReadyToPlay] = useState(false);
-
-  const handleRegion = () => {
-    setRegion(!region);
-  };
 
   const navigate = useNavigate();
 
   const showValue = (event) => setRegion(event.target.value);
-  const checkboxHandler = (event) => setReadyToPlay(event.target.checked);
+  const checkboxHandler = (event) => {
+    setReadyToPlay(event.target.checked);
+  };
   //Navegar a Home
   const startPlay = () => {
-    navigate("/home");
-    startGame();
+    SetIsRegionSelected(true);
+    navigate("/");
+    getAllPokemons();
   };
 
   return (

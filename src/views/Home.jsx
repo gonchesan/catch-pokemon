@@ -1,6 +1,7 @@
 import WallpaperPlaying from "../assets/images/Background.jpg";
 import PokedexPartLeft from "../assets/images/Pokedex-part-a.png";
 import PokedexPartRight from "../assets/images/Pokedex-part-b.png";
+import { returnData } from "../utils/functions";
 import {
   BackgroundGame,
   ContainerGame,
@@ -23,11 +24,6 @@ const Home = ({
   allTheNames,
   handleOptions,
 }) => {
-  const returnData = (array, index) => {
-    let dataToFind = array.find((item) => item.id === index);
-    return dataToFind;
-  };
-
   return (
     <ContainerGame>
       <BackgroundGame src={WallpaperPlaying} />
@@ -41,7 +37,6 @@ const Home = ({
         ) : null}
         <PokedexMachine src={PokedexPartLeft} alt="pokedex" />
         <PokedexMachineRight src={PokedexPartRight} alt="pokedexPartB" />
-        {/* <PokedexMachine src={PokedexPartRight} /> */}
       </PokedexContainer>
       <OptionsContainer>
         {optionsToCatch ? (
@@ -50,7 +45,7 @@ const Home = ({
               return (
                 <OptionWrapper
                   onClick={() =>
-                    handleOptions(returnData(allTheNames, index).id)
+                    handleOptions(returnData(allTheNames, index)?.id)
                   }
                   key={index}
                 >
@@ -58,31 +53,13 @@ const Home = ({
                     <PokeballButton />
                   </Pokeball>
                   <OptionPokemon>
-                    {returnData(allTheNames, index).name}
+                    {returnData(allTheNames, index)?.name}
                   </OptionPokemon>
                 </OptionWrapper>
               );
             })}
           </>
         ) : null}
-        {/* <OptionWrapper>
-          <Pokeball>
-            <PokeballButton />
-          </Pokeball>
-          <OptionPokemon>Squirtle</OptionPokemon>
-        </OptionWrapper>
-        <OptionWrapper>
-          <Pokeball>
-            <PokeballButton />
-          </Pokeball>
-          <OptionPokemon>Pikachu</OptionPokemon>
-        </OptionWrapper>
-        <OptionWrapper>
-          <Pokeball>
-            <PokeballButton />
-          </Pokeball>
-          <OptionPokemon>Moltres</OptionPokemon>
-        </OptionWrapper> */}
       </OptionsContainer>
     </ContainerGame>
   );

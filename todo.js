@@ -34,9 +34,14 @@ redBlacked: 2D1F1F
 fullBlac: 131313
 
 
+?                Cuantos pkm puedes caputar en 30'' ??
 
-
-
+!                           BUGS
+! Se repite el mismo nombre y key
+	> De las opciones incorrectas
+	> Una correcta y la otra incorrecta
+! Devuelve 2 opciones en vez de 3
+	> Y las dos son las opciones correctas
 
 
 */
