@@ -18,12 +18,15 @@ export const shuffle = (array) => {
   return array;
 };
 
-export const randomId = (remainingPokemons) => {
-  if (remainingPokemons) {
-    return Math.floor(Math.random() * remainingPokemons.length);
-  } else {
-    return Math.floor(Math.random() * 151);
-  }
+// export const randomId = (remainingPokemons) => {
+//   if (remainingPokemons) {
+//     return Math.floor(Math.random() * remainingPokemons.length);
+//   } else {
+//     return Math.floor(Math.random() * 151);
+//   }
+// };
+export const randomId = (min, max) => {
+  return Math.floor(Math.random() * (max - min)) + min;
 };
 
 //Fetch an object from an array from an index. Because the id of the pokemons is different from array.length

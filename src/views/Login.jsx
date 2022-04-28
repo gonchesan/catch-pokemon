@@ -30,7 +30,10 @@ const Login = ({ region, setRegion, getAllPokemons, SetIsRegionSelected }) => {
     navigate("/");
     getAllPokemons();
   };
-
+  // 1-151
+  // 152-251
+  // 252-386
+  // 387-493
   return (
     <ContainerLogin>
       <BackgroundLogin src={WallpaperLogin} />

@@ -28,8 +28,14 @@ const App = () => {
   const getAllPokemons = async () => {
     setLoading(true);
     let dataFromAllPokemons = [];
+    // 1-151
+    // 152-251
+    // fetchPokemons("151", "0")
+    // fetchPokemons("100", "151")
+    // fetchPokemons("135", "251")
+    // fetchPokemons("135", "386")
 
-    fetchPokemons("151")
+    fetchPokemons("135", "386")
       .then(async (pokemons) => {
         const all = await Promise.all(
           pokemons.results.map(async (pokemon) => {
@@ -39,18 +45,25 @@ const App = () => {
         return all;
       })
       .then((all) => {
-        let newIndex = randomId(all);
-        const item = all[newIndex];
+        // let newIndex = randomId(all);
+        let newIndex = randomId(387, 521);
+        // const item = all[newIndex];
+        const firstPokemon = all.find((poke) => poke.id === newIndex);
+        console.log("INDEX =>", newIndex);
+        console.log(firstPokemon);
+        console.log(all);
+        // const item = firstPokemon;
+
         all.forEach((element) => {
           dataFromAllPokemons.push({ id: element.id, name: element.name });
         });
         setAllTheNames(dataFromAllPokemons);
 
-        setPokemonToCatch(item);
+        setPokemonToCatch(firstPokemon);
         setKantoPokemons(all);
         setLoading(false);
 
-        setOptionsToCatch(getThreeOptions(item.id));
+        setOptionsToCatch(getThreeOptions(firstPokemon.id));
       });
   };
 
@@ -58,7 +71,9 @@ const App = () => {
     let arrayPokemonOption = [newIndex];
     let count = 1;
     while (count !== 3) {
-      let newPokemonToAdd = randomId();
+      // el newIndex deberia devolver un numero
+      // que se encuentre en el array /
+      let newPokemonToAdd = randomId(387, 521);
       if (newPokemonToAdd !== newIndex) {
         // deberia separar los valores de getThreeOptions y el item.id por otro
         if (!arrayPokemonOption.includes(newPokemonToAdd)) {
@@ -93,11 +108,14 @@ const App = () => {
   useEffect(() => {
     if (kantoPokemons.length > 0) {
       //Importantisimo poner los pokemonsRemaining como parametro
-      let newIndex = randomId(kantoPokemons);
-      console.warn("ID de pokemon a elegir =>", kantoPokemons[newIndex]);
+      // !el newIndex deberia devolver un numero
+      // !que se encuentre en el array / y que NO haya atrapado
+      let newIndex = randomId(387, 521);
+
+      // console.warn("ID de pokemon a elegir =>", kantoPokemons[newIndex]);
       // Es DECIR del 1 al 151
 
-      const item = kantoPokemons[newIndex];
+      const item = kantoPokemons.find((poke) => poke.id === newIndex);
       setPokemonToCatch(item);
       setOptionsToCatch(getThreeOptions(item.id));
     } else {
@@ -109,7 +127,7 @@ const App = () => {
   useEffect(() => {
     WebFont.load({
       google: {
-        families: ["Saira Condensed"],
+        families: ["Saira Condensed", "ZCOOL QingKe HuangYou"],
       },
     });
   }, []);
