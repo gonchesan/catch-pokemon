@@ -122,6 +122,11 @@ const App = () => {
       console.log("Se acabo el juego reeey");
     }
   }, [pokedex]);
+  //Fn   Lorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum
+  //*   Lorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum
+  //?   Lorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum
+  //!   Lorem Ipsum Lo rem Ipsum Lorem IpsumLorem Ipsum
+  //TODO Lorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum
 
   //? import font via webfontloader
   useEffect(() => {
