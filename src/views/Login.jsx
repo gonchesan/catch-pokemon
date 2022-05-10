@@ -15,7 +15,7 @@ import SinnohPoke from "../assets/images/pokedex-sinnoh.png";
 import Logo from "../assets/images/logo-login.svg";
 import { useNavigate } from "react-router-dom";
 
-const Login = ({ region, setRegion, getAllPokemons, SetIsRegionSelected }) => {
+const Login = ({ region, setRegion, getAllPokemons, setIsRegionSelected }) => {
   const [readyToPlay, setReadyToPlay] = useState(false);
 
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ const Login = ({ region, setRegion, getAllPokemons, SetIsRegionSelected }) => {
   };
   //Navegar a Home
   const startPlay = () => {
-    SetIsRegionSelected(true);
+    setIsRegionSelected(true);
     navigate("/");
     getAllPokemons();
   };
@@ -39,44 +39,44 @@ const Login = ({ region, setRegion, getAllPokemons, SetIsRegionSelected }) => {
       <BackgroundLogin src={WallpaperLogin} />
       <LogoLogin src={Logo} alt="logo for login" />
       <div onChange={showValue}>
-        <OptionRegion clicked={region === "Kanto"}>
+        <OptionRegion clicked={region === "1Gen"}>
           <img src={KantoPoke} alt="pokedex region" />
           <input
             type="radio"
-            value="Kanto"
+            value="1Gen"
             name="Kanto"
             checked={region === "Kanto"}
             onChange={checkboxHandler}
           />
           Kanto
         </OptionRegion>
-        <OptionRegion clicked={region === "Johto"}>
+        <OptionRegion clicked={region === "2Gen"}>
           <img src={JohtoPoke} alt="pokedex region" />
           <input
             type="radio"
-            value="Johto"
+            value="2Gen"
             name="Johto"
             checked={region === "Johto"}
             onChange={checkboxHandler}
           />
           Johto
         </OptionRegion>
-        <OptionRegion clicked={region === "Hoenn"}>
+        <OptionRegion clicked={region === "3Gen"}>
           <img src={HoennPoke} alt="pokedex region" />
           <input
             type="radio"
-            value="Hoenn"
+            value="3Gen"
             name="Hoenn"
             checked={region === "Hoenn"}
             onChange={checkboxHandler}
           />
           Hoenn
         </OptionRegion>
-        <OptionRegion clicked={region === "Sinnoh"}>
+        <OptionRegion clicked={region === "4Gen"}>
           <img src={SinnohPoke} alt="pokedex region" />
           <input
             type="radio"
-            value="Sinnoh"
+            value="4Gen"
             name="Sinnoh"
             checked={region === "Sinnoh"}
             onChange={checkboxHandler}

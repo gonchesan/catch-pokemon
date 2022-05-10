@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { NumbersWrapper, StopwatchWrapper } from "./Stopwatch.style";
+import {
+  NumbersWrapper,
+  ProgressBar,
+  StopwatchWrapper,
+} from "./Stopwatch.style";
 
-const Stopwatch = () => {
+const Stopwatch = ({ startGame }) => {
   const [time, setTime] = useState(30000);
   const [running, setRunning] = useState(false);
+
   useEffect(() => {
     let interval;
     if (running) {
@@ -23,19 +28,28 @@ const Stopwatch = () => {
 
     return () => clearInterval(interval);
   }, [running]);
+
+  useEffect(() => {
+    if (startGame) {
+      setRunning(true);
+    }
+  }, []);
   return (
-    <StopwatchWrapper>
-      <NumbersWrapper>
-        <span>{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
-        <span>{("0" + ((time / 10) % 100)).slice(-2)}</span>
-        <span>"</span>
-      </NumbersWrapper>
-      <div className="buttons">
+    <>
+      {running && <ProgressBar />}
+      <StopwatchWrapper>
+        <NumbersWrapper>
+          <span>{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
+          <span>{("0" + ((time / 10) % 100)).slice(-2)}</span>
+          <span>"</span>
+        </NumbersWrapper>
+        {/* <div className="buttons">
         <button onClick={() => setRunning(true)}>Start</button>
         <button onClick={() => setRunning(false)}>Stop</button>
         <button onClick={() => setTime(0)}>Reset</button>
-      </div>
-    </StopwatchWrapper>
+      </div> */}
+      </StopwatchWrapper>
+    </>
   );
 };
 

@@ -16,7 +16,6 @@ export const BackgroundGame = styled.img`
   z-index: -1;
   width: 100%;
   height: 100%;
-  background-color: blueviolet;
   object-fit: cover;
 `;
 
@@ -29,7 +28,10 @@ export const PokedexContainer = styled.div`
 export const PokedexMachine = styled.img`
   z-index: 1;
   width: 17em;
+  height: auto;
   position: relative;
+  margin: 0 auto;
+  margin-top: 3.5rem;
 `;
 
 export const PokedexMachineRight = styled.img`
@@ -46,7 +48,7 @@ export const PokedexScreen = styled.div`
   border-radius: 7px;
   width: 11em;
   left: calc(50% - 6.3em);
-  bottom: calc(50% - 2.7em);
+  bottom: calc(50% - 4.7em);
   z-index: 5;
   height: 8em;
 `;
@@ -55,6 +57,8 @@ export const OptionsContainer = styled.div`
   z-index: 55;
   width: 85vw;
   height: 8em;
+  margin: 0 auto;
+  margin-top: 2rem;
 `;
 
 export const OptionPokemon = styled.button`
@@ -170,7 +174,7 @@ export const PokemonFigure = styled.img`
   border-radius: 7px;
   width: 11.5em;
   left: calc(50% - 6.6em);
-  bottom: calc(50% - 2.5em);
+  bottom: calc(50% - 4.5em);
   z-index: 5;
   height: 8.15em;
   object-fit: contain;

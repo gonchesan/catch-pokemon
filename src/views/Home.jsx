@@ -1,6 +1,7 @@
 import WallpaperPlaying from "../assets/images/Background.jpg";
 import PokedexPartLeft from "../assets/images/Pokedex-part-a.png";
 import PokedexPartRight from "../assets/images/Pokedex-part-b.png";
+import Score from "../components/Score";
 import Stopwatch from "../components/Stopwatch";
 import { returnData } from "../utils/functions";
 import {
@@ -19,16 +20,18 @@ import {
 } from "./Home.style";
 
 const Home = ({
-  region,
   pokemonToCatch,
   optionsToCatch,
   allTheNames,
   handleOptions,
+  startGame,
+  caughtPokemons,
 }) => {
   return (
     <ContainerGame>
       <BackgroundGame src={WallpaperPlaying} />
-      <Stopwatch />
+      <Score caughtPokemons={caughtPokemons} />
+      <Stopwatch startGame={startGame} />
       <PokedexContainer>
         <PokedexScreen />
         {pokemonToCatch ? (
