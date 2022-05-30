@@ -12,21 +12,23 @@ import RegionGuard from "./guards/RegionGuard";
 import { randomId, shuffle } from "./utils/functions";
 import { fetchPokemonData, fetchPokemons } from "./utils/services";
 
+import soundError from "./assets/audio/wrongAnswer.mp3";
+import soundSuccess from "./assets/audio/rightAnswer.mp3";
+
 const App = () => {
-  const [region, setRegion] = useState("");
-  const [isRegionSelected, setIsRegionSelected] = useState(false);
-  const [startGame, setStartGame] = useState(false);
-  const [caughtPokemons, setCaughtPokemons] = useState(0);
-  // const [genToFetch, SetGenToFetch] = useState({ quantity: 151, since: 0 });
+  const [region, setRegion] = useState(""); //?  Region to play
+  const [isRegionSelected, setIsRegionSelected] = useState(false); //? Region selected, ready to play
+  const [startGame, setStartGame] = useState(false); //? Boolean to start the game
+  const [caughtPokemons, setCaughtPokemons] = useState(0); //? ????
 
   // * ----------------------------------------------
-  const [pokemonToCatch, setPokemonToCatch] = useState();
-  const [allTheNames, setAllTheNames] = useState({});
-  const [optionsToCatch, setOptionsToCatch] = useState([]);
-  const [kantoPokemons, setKantoPokemons] = useState({});
-  const [tenPokemons, setTenPokemons] = useState([]);
-  const [pokedex, setPokedex] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [pokemonToCatch, setPokemonToCatch] = useState(); //!! !!!!!!!!!!!!!
+  const [allTheNames, setAllTheNames] = useState({}); //!! !!!!!!!!!!!!!
+  const [optionsToCatch, setOptionsToCatch] = useState([]); //? 3 options to choose
+  const [kantoPokemons, setKantoPokemons] = useState({}); //TODO Name
+  const [tenPokemons, setTenPokemons] = useState([]); //? 10 Pokemons to catch
+  const [pokedex, setPokedex] = useState([]); //? ???
+  const [loading, setLoading] = useState(false); //! !!!!!!!!!!!!!!!!!
   // * ----------------------------------------------
 
   const generations = {
@@ -39,14 +41,6 @@ const App = () => {
   const getAllPokemons = async () => {
     setLoading(true);
     let dataFromAllPokemons = [];
-
-    // 1-151
-    // 152-251
-    // fetchPokemons("151", "0")
-    // fetchPokemons("100", "151")
-    // fetchPokemons("135", "251")
-    // fetchPokemons("135", "386")
-
     fetchPokemons(generations[region].quantity, generations[region].since)
       .then(async (pokemons) => {
         const all = await Promise.all(
@@ -57,32 +51,17 @@ const App = () => {
         return all;
       })
       .then((all) => {
-        // let newIndex = randomId(all);
-        let newIndex = randomId(
-          generations[region].firstId,
-          generations[region].lastId
-        );
         //? Obtengo un array con 10 opciones para atrapar
         let array10 = getTenOptions();
         setTenPokemons(array10);
-        console.log(array10);
-        // const item = all[newIndex];
         const firstPokemon = all.find((poke) => poke.id === array10[0]);
-        // console.log("INDEX =>", newIndex);
-        // console.log(all);
-        // const item = firstPokemon;
-
         all.forEach((element) => {
           dataFromAllPokemons.push({ id: element.id, name: element.name });
         });
         setAllTheNames(dataFromAllPokemons);
-
         setPokemonToCatch(firstPokemon);
         setKantoPokemons(all);
-
         setLoading(false);
-
-        // console.log(array10);
         setOptionsToCatch(getThreeOptions(firstPokemon.id));
       });
     setStartGame(true);
@@ -92,14 +71,11 @@ const App = () => {
     let arrayPokemonOption = [newIndex];
     let count = 1;
     while (count !== 3) {
-      // el newIndex deberia devolver un numero
-      // que se encuentre en el array /
       let newPokemonToAdd = randomId(
         generations[region].firstId,
         generations[region].lastId
       );
       if (newPokemonToAdd !== newIndex) {
-        // deberia separar los valores de getThreeOptions y el item.id por otro
         if (!arrayPokemonOption.includes(newPokemonToAdd)) {
           arrayPokemonOption.push(newPokemonToAdd);
           count++;
@@ -110,15 +86,20 @@ const App = () => {
     return arrayPokemonOption;
   };
 
+  const playAudio = (audioOption) => {
+    new Audio(audioOption).play();
+  };
+
   const handleOptions = (index) => {
     let clearPokemon = tenPokemons.filter((item) => item !== pokemonToCatch.id);
     setPokedex([...pokedex, pokemonToCatch]);
     setTenPokemons(clearPokemon);
     if (pokemonToCatch.id === index) {
       setCaughtPokemons(caughtPokemons + 1);
+      playAudio(soundSuccess);
     } else {
       //TODO Make animation or play an audio to display a wrong answer
-      // console.warn("Por ahi no es mi rey");
+      playAudio(soundError);
     }
   };
 
@@ -142,34 +123,11 @@ const App = () => {
 
   useEffect(() => {
     if (tenPokemons.length > 0) {
-      //Importantisimo poner los pokemonsRemaining como parametro
-      // !el newIndex deberia devolver un numero
-      // !que se encuentre en el array / y que NO haya atrapado
-      // let newIndex;
-      // newIndex = randomId(
-      //   generations[region].firstId,
-      //   generations[region].lastId
-      // );
-
-      // console.warn("kantoPokemons =>", kantoPokemons);
-      // console.warn("kantoPokemons length =>", kantoPokemons.length);
-      // Es DECIR del 1 al 151
-
       const item = kantoPokemons.find((poke) => poke.id === tenPokemons[0]);
-      // console.log(item);
-      // if (item) {
       setPokemonToCatch(item);
-      // } else {
-      // console.warn("NO EXISTE UN POKEMON CON ESE ID");
-      console.warn(item);
-      // }
-      console.warn("new Index =>", tenPokemons[0]);
-      console.warn("objeto{} de pokemon a elegir =>", item);
-      console.warn("ID de pokemon a elegir =>", item.name);
       setOptionsToCatch(getThreeOptions(item.id));
-      console.log(tenPokemons);
     } else {
-      console.log("Se acabo el juego reeey");
+      //TODO the game is over
     }
   }, [pokedex]);
 
