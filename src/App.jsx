@@ -1,36 +1,42 @@
 import { useState, useEffect } from "react";
 
+//* Fonts and global styles
 import WebFont from "webfontloader";
 import { GlobalStyles } from "./globalStyles";
 
-import { BrowserRouter } from "react-router-dom";
+//* Views game
+import Menu from "./pages/Menu";
+import RoutePokemon from "./pages/RoutePokemon";
 
+//* Router dependency
+import { BrowserRouter, Navigate } from "react-router-dom";
 import { Route, Routes } from "react-router-dom";
-import Login from "./views/Login";
-import Home from "./views/Home";
+
+//* Handle Route by guard
 import RegionGuard from "./guards/RegionGuard";
+
+//* Functions and services
 import { randomId, shuffle } from "./utils/functions";
 import { fetchPokemonData, fetchPokemons } from "./utils/services";
 
+//* Assets sounds
 import soundError from "./assets/audio/wrongAnswer.mp3";
 import soundSuccess from "./assets/audio/rightAnswer.mp3";
 
 const App = () => {
   const [region, setRegion] = useState(""); //?  Region to play
   const [isRegionSelected, setIsRegionSelected] = useState(false); //? Region selected, ready to play
-  const [startGame, setStartGame] = useState(false); //? Boolean to start the game
-  const [caughtPokemons, setCaughtPokemons] = useState(0); //? ????
-
-  // * ----------------------------------------------
-  const [pokemonToCatch, setPokemonToCatch] = useState(); //!! !!!!!!!!!!!!!
-  const [allTheNames, setAllTheNames] = useState({}); //!! !!!!!!!!!!!!!
+  const [startGame, setStartGame] = useState(false); //? Boolean to start the game and redirect
+  const [caughtPokemons, setCaughtPokemons] = useState(0); //? The Score: Number of caught pokemons
+  const [pokemonToCatch, setPokemonToCatch] = useState(); //? The right answer: Pokemon selected to play
   const [optionsToCatch, setOptionsToCatch] = useState([]); //? 3 options to choose
-  const [kantoPokemons, setKantoPokemons] = useState({}); //TODO Name
-  const [tenPokemons, setTenPokemons] = useState([]); //? 10 Pokemons to catch
-  const [pokedex, setPokedex] = useState([]); //? ???
-  const [loading, setLoading] = useState(false); //! !!!!!!!!!!!!!!!!!
-  // * ----------------------------------------------
+  const [roundPokemons, setRoundPokemons] = useState([]); //? 10 Pokemons to catch per game
+  const [allPokemons, setAllPokemons] = useState({}); //? All the pokemons of the selected generation
+  const [loading, setLoading] = useState(false); //? Boolean to know if the info is being loaded
+  const [allTheNames, setAllTheNames] = useState({}); //? Data cleaned to play: T he correct name and id
+  const [pokedex, setPokedex] = useState([]); //? Caught pokemons
 
+  //* Object ternary operator
   const generations = {
     "1Gen": { quantity: "151", since: "0", firstId: 1, lastId: 150 },
     "2Gen": { quantity: "100", since: "151", firstId: 151, lastId: 251 },
@@ -38,6 +44,7 @@ const App = () => {
     "4Gen": { quantity: "107", since: "386", firstId: 387, lastId: 493 },
   };
 
+  //Fn Get the initial Pokemons to play
   const getAllPokemons = async () => {
     setLoading(true);
     let dataFromAllPokemons = [];
@@ -51,22 +58,23 @@ const App = () => {
         return all;
       })
       .then((all) => {
-        //? Obtengo un array con 10 opciones para atrapar
+        //? Get an array with 10 options to catch
         let array10 = getTenOptions();
-        setTenPokemons(array10);
+        setRoundPokemons(array10);
         const firstPokemon = all.find((poke) => poke.id === array10[0]);
         all.forEach((element) => {
           dataFromAllPokemons.push({ id: element.id, name: element.name });
         });
         setAllTheNames(dataFromAllPokemons);
         setPokemonToCatch(firstPokemon);
-        setKantoPokemons(all);
+        setAllPokemons(all);
         setLoading(false);
         setOptionsToCatch(getThreeOptions(firstPokemon.id));
       });
     setStartGame(true);
   };
 
+  //Fn Get 3 options to play with unique pokemons
   const getThreeOptions = (newIndex) => {
     let arrayPokemonOption = [newIndex];
     let count = 1;
@@ -86,14 +94,18 @@ const App = () => {
     return arrayPokemonOption;
   };
 
+  //Fn Set an audio to play depending on the answer
   const playAudio = (audioOption) => {
     new Audio(audioOption).play();
   };
 
+  //Fn Handle the response after having selected an option
   const handleOptions = (index) => {
-    let clearPokemon = tenPokemons.filter((item) => item !== pokemonToCatch.id);
+    let clearPokemon = roundPokemons.filter(
+      (item) => item !== pokemonToCatch.id
+    );
     setPokedex([...pokedex, pokemonToCatch]);
-    setTenPokemons(clearPokemon);
+    setRoundPokemons(clearPokemon);
     if (pokemonToCatch.id === index) {
       setCaughtPokemons(caughtPokemons + 1);
       playAudio(soundSuccess);
@@ -103,6 +115,7 @@ const App = () => {
     }
   };
 
+  //Fn Set the pokemons to play in the round
   const getTenOptions = () => {
     let arrayTenToWin = [];
     let newIndex;
@@ -121,16 +134,6 @@ const App = () => {
     return arrayTenToWin;
   };
 
-  useEffect(() => {
-    if (tenPokemons.length > 0) {
-      const item = kantoPokemons.find((poke) => poke.id === tenPokemons[0]);
-      setPokemonToCatch(item);
-      setOptionsToCatch(getThreeOptions(item.id));
-    } else {
-      //TODO the game is over
-    }
-  }, [pokedex]);
-
   //Fn import font via webfontloader
   useEffect(() => {
     WebFont.load({
@@ -140,15 +143,27 @@ const App = () => {
     });
   }, []);
 
+  useEffect(() => {
+    if (roundPokemons.length > 0) {
+      const item = allPokemons.find((poke) => poke.id === roundPokemons[0]);
+      setPokemonToCatch(item);
+      setOptionsToCatch(getThreeOptions(item.id));
+    } else {
+      if (startGame) {
+        //TODO the game is over
+      }
+    }
+  }, [pokedex]);
+
   return (
     <>
       <GlobalStyles />
       <BrowserRouter>
         <Routes>
           <Route
-            path="/regions"
+            path="/menu"
             element={
-              <Login
+              <Menu
                 region={region}
                 setRegion={setRegion}
                 getAllPokemons={getAllPokemons}
@@ -160,17 +175,20 @@ const App = () => {
             <Route
               path="/"
               element={
-                <Home
+                <RoutePokemon
                   pokemonToCatch={pokemonToCatch}
                   optionsToCatch={optionsToCatch}
                   allTheNames={allTheNames}
                   handleOptions={handleOptions}
                   startGame={startGame}
                   caughtPokemons={caughtPokemons}
+                  loading={loading}
+                  roundPokemons={roundPokemons}
                 />
               }
             />
           </Route>
+          <Route path="*" element={<Navigate to="/menu" />}></Route>
         </Routes>
       </BrowserRouter>
     </>

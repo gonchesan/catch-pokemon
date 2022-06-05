@@ -1,3 +1,7 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+//* Styles
 import {
   BackgroundLogin,
   ContainerLogin,
@@ -5,17 +9,17 @@ import {
   MessageBox,
   OptionRegion,
   StartButton,
-} from "./Login.style";
-import React, { useState } from "react";
+} from "./styles/Menu.style";
+
+//* Assets
 import WallpaperLogin from "../assets/images/wallpaper-login.jpg";
 import KantoPoke from "../assets/images/pokedex-Kanto.png";
 import JohtoPoke from "../assets/images/pokedex-johto.png";
 import HoennPoke from "../assets/images/pokedex-hoenn.png";
 import SinnohPoke from "../assets/images/pokedex-sinnoh.png";
 import Logo from "../assets/images/logo-login.svg";
-import { useNavigate } from "react-router-dom";
 
-const Login = ({ region, setRegion, getAllPokemons, setIsRegionSelected }) => {
+const Menu = ({ region, setRegion, getAllPokemons, setIsRegionSelected }) => {
   const [readyToPlay, setReadyToPlay] = useState(false);
 
   const navigate = useNavigate();
@@ -93,4 +97,4 @@ const Login = ({ region, setRegion, getAllPokemons, setIsRegionSelected }) => {
   );
 };
 
-export default Login;
+export default Menu;
