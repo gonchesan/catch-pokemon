@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { keyframes } from "styled-components";
+import styled from 'styled-components';
+import { keyframes } from 'styled-components';
 
 export const ContainerGame = styled.div`
   display: flex;
@@ -110,7 +110,7 @@ export const Pokeball = styled.div`
 
   &::before,
   &::after {
-    content: "";
+    content: '';
     position: absolute;
   }
 

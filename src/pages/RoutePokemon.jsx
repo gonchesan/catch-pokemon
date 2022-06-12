@@ -1,9 +1,9 @@
 //* Components
-import Score from "../components/Score";
-import Stopwatch from "../components/Stopwatch";
+import Score from '../components/Score';
+import Stopwatch from '../components/Stopwatch';
 
 //* Functions
-import { returnData } from "../utils/functions";
+import { returnData } from '../utils/functions';
 
 //* Styles
 import {
@@ -19,12 +19,13 @@ import {
   PokedexMachineRight,
   PokedexScreen,
   PokemonFigure,
-} from "./styles/RoutePokemon.style";
+} from './styles/RoutePokemon.style';
 
 //* Assets
-import WallpaperPlaying from "../assets/images/Background.jpg";
-import PokedexPartLeft from "../assets/images/Pokedex-part-a.png";
-import PokedexPartRight from "../assets/images/Pokedex-part-b.png";
+import WallpaperPlaying from '../assets/images/Background.jpg';
+import PokedexPartLeft from '../assets/images/Pokedex-part-a.png';
+import PokedexPartRight from '../assets/images/Pokedex-part-b.png';
+import ModalEndGame from '../components/ModalEndGame';
 
 const RoutePokemon = ({
   pokemonToCatch,
@@ -35,9 +36,12 @@ const RoutePokemon = ({
   caughtPokemons,
   loading,
   roundPokemons,
+  showModal,
 }) => {
   return (
     <ContainerGame>
+      {showModal && startGame ? <ModalEndGame showModal={showModal} /> : null}
+
       <BackgroundGame src={WallpaperPlaying} />
       <Score caughtPokemons={caughtPokemons} />
       <Stopwatch
@@ -48,7 +52,7 @@ const RoutePokemon = ({
       {loading ? (
         <div>
           {/* //TODO Make a charging screen */}
-          <h2>CARGANDO...</h2>
+          <ModalEndGame />
         </div>
       ) : (
         <>

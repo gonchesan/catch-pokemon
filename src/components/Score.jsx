@@ -1,5 +1,5 @@
-import { BadgeIcon, BadgeScore, BadgeText, BadgeWrapper } from "./Score.style";
-import PokeballIcon from "../assets/images/mdi_pokeball.svg";
+import { BadgeIcon, BadgeScore, BadgeText, BadgeWrapper } from './Score.style';
+import PokeballIcon from '../assets/images/mdi_pokeball.svg';
 
 const Score = ({ caughtPokemons }) => {
   return (
