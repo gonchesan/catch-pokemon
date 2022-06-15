@@ -26,6 +26,7 @@ import WallpaperPlaying from '../assets/images/Background.jpg';
 import PokedexPartLeft from '../assets/images/Pokedex-part-a.png';
 import PokedexPartRight from '../assets/images/Pokedex-part-b.png';
 import ModalEndGame from '../components/ModalEndGame';
+import { useState } from 'react';
 
 const RoutePokemon = ({
   pokemonToCatch,
@@ -38,9 +39,17 @@ const RoutePokemon = ({
   roundPokemons,
   showModal,
 }) => {
+  const [scoredTime, setScoredTime] = useState(0);
+
   return (
     <ContainerGame>
-      {showModal && startGame ? <ModalEndGame showModal={showModal} /> : null}
+      {showModal && startGame ? (
+        <ModalEndGame
+          scoredTime={scoredTime}
+          caughtPokemons={caughtPokemons}
+          showModal={showModal}
+        />
+      ) : null}
 
       <BackgroundGame src={WallpaperPlaying} />
       <Score caughtPokemons={caughtPokemons} />
@@ -48,6 +57,7 @@ const RoutePokemon = ({
         startGame={startGame}
         loading={loading}
         roundPokemons={roundPokemons}
+        setScoredTime={setScoredTime}
       />
       {loading ? (
         <div>

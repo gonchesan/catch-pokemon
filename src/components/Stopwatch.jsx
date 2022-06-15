@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { TimePipe } from '../pipes/timePipe';
 
 //* Styles
 import {
@@ -7,7 +8,7 @@ import {
   StopwatchWrapper,
 } from './Stopwatch.style';
 
-const Stopwatch = ({ startGame, loading, roundPokemons }) => {
+const Stopwatch = ({ startGame, loading, roundPokemons, setScoredTime }) => {
   const [time, setTime] = useState(30000);
   const [running, setRunning] = useState(false);
 
@@ -18,7 +19,6 @@ const Stopwatch = ({ startGame, loading, roundPokemons }) => {
         setTime((prevTime) => {
           if (prevTime === 0) {
             setRunning(false);
-            console.log('paro');
             return prevTime;
           }
           return prevTime - 10;
@@ -27,14 +27,13 @@ const Stopwatch = ({ startGame, loading, roundPokemons }) => {
     } else if (!running) {
       clearInterval(interval);
     }
-    console.log(roundPokemons);
     return () => clearInterval(interval);
   }, [running]);
 
   useEffect(() => {
     if (roundPokemons.length === 0) {
       setRunning(false);
-      console.log(time);
+      setScoredTime(time);
     }
   }, [roundPokemons]);
 
@@ -51,9 +50,7 @@ const Stopwatch = ({ startGame, loading, roundPokemons }) => {
       {running && <ProgressBar />}
       <StopwatchWrapper>
         <NumbersWrapper>
-          {/* //TODO make a pipe for this time */}
-          <span>{('0' + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
-          <span>{('0' + ((time / 10) % 100)).slice(-2)}</span>
+          <span>{TimePipe(time)}</span>
           <span>"</span>
         </NumbersWrapper>
       </StopwatchWrapper>

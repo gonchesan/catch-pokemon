@@ -8,9 +8,11 @@ import {
   ModalGrid,
   ModalHeader,
 } from './ModalEndGame.style';
-import PokemonWatch from '../assets/images/poke-watch.png';
-import PokeBall from '../assets/images/pokeball-sprite.png';
-const ModalEndGame = ({ showModal }) => {
+import PokemonWatch from '../assets/images/Icon-Watch.svg';
+import PokeBall from '../assets/images/Icon-Pokeball.svg';
+import PokePoints from '../assets/images/icon-pokepoints.svg';
+import { TimePipe } from '../pipes/timePipe';
+const ModalEndGame = ({ showModal, caughtPokemons, scoredTime }) => {
   return (
     <Modal visible={showModal}>
       <ModalContent>
@@ -20,17 +22,21 @@ const ModalEndGame = ({ showModal }) => {
         <ModalBody>
           <ModalGrid>
             <Column>
-              <img height="40px" src={PokeBall} />
-              <span> 7/10</span>
-              {/* <span> 7/10 Pokemons</span> */}
+              <img src={PokeBall} />
+              <span>
+                <small>x</small> {caughtPokemons}
+              </span>
             </Column>
             <Column>
-              <img height="40px" src={PokemonWatch} />
-              <span> 17:00"</span>
-              {/* <span> 17:00" | timePipe</span> */}
+              <img src={PokemonWatch} />
+              <span>{TimePipe(scoredTime)}"</span>
             </Column>
             <Column>
-              <p>Score: 6000 [Poké | currencyPipe]</p>
+              <span>Score</span>
+              <span>
+                <img src={PokePoints} />
+                {caughtPokemons * Math.round(scoredTime / 100)}
+              </span>
             </Column>
             <ModalButton secondary>Menu</ModalButton>
             <ModalButton>Retry</ModalButton>
