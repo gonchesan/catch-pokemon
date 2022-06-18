@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 //* Styles
 import {
@@ -9,15 +9,15 @@ import {
   MessageBox,
   OptionRegion,
   StartButton,
-} from "./styles/Menu.style";
+} from './styles/Menu.style';
 
 //* Assets
-import WallpaperLogin from "../assets/images/wallpaper-login.jpg";
-import KantoPoke from "../assets/images/pokedex-Kanto.png";
-import JohtoPoke from "../assets/images/pokedex-johto.png";
-import HoennPoke from "../assets/images/pokedex-hoenn.png";
-import SinnohPoke from "../assets/images/pokedex-sinnoh.png";
-import Logo from "../assets/images/logo-login.svg";
+import WallpaperLogin from '../assets/images/wallpaper-login.jpg';
+import KantoPoke from '../assets/images/pokedex-Kanto.png';
+import JohtoPoke from '../assets/images/pokedex-johto.png';
+import HoennPoke from '../assets/images/pokedex-hoenn.png';
+import SinnohPoke from '../assets/images/pokedex-sinnoh.png';
+import Logo from '../assets/images/logo-login.svg';
 
 const Menu = ({ region, setRegion, getAllPokemons, setIsRegionSelected }) => {
   const [readyToPlay, setReadyToPlay] = useState(false);
@@ -31,7 +31,7 @@ const Menu = ({ region, setRegion, getAllPokemons, setIsRegionSelected }) => {
   //Navegar a Home
   const startPlay = () => {
     setIsRegionSelected(true);
-    navigate("/");
+    navigate('/');
     getAllPokemons();
   };
   // 1-151
@@ -43,46 +43,46 @@ const Menu = ({ region, setRegion, getAllPokemons, setIsRegionSelected }) => {
       <BackgroundLogin src={WallpaperLogin} />
       <LogoLogin src={Logo} alt="logo for login" />
       <div onChange={showValue}>
-        <OptionRegion clicked={region === "1Gen"}>
+        <OptionRegion clicked={region === '1Gen'}>
           <img src={KantoPoke} alt="pokedex region" />
           <input
             type="radio"
             value="1Gen"
             name="Kanto"
-            checked={region === "Kanto"}
+            checked={region === 'Kanto'}
             onChange={checkboxHandler}
           />
           Kanto
         </OptionRegion>
-        <OptionRegion clicked={region === "2Gen"}>
+        <OptionRegion clicked={region === '2Gen'}>
           <img src={JohtoPoke} alt="pokedex region" />
           <input
             type="radio"
             value="2Gen"
             name="Johto"
-            checked={region === "Johto"}
+            checked={region === 'Johto'}
             onChange={checkboxHandler}
           />
           Johto
         </OptionRegion>
-        <OptionRegion clicked={region === "3Gen"}>
+        <OptionRegion clicked={region === '3Gen'}>
           <img src={HoennPoke} alt="pokedex region" />
           <input
             type="radio"
             value="3Gen"
             name="Hoenn"
-            checked={region === "Hoenn"}
+            checked={region === 'Hoenn'}
             onChange={checkboxHandler}
           />
           Hoenn
         </OptionRegion>
-        <OptionRegion clicked={region === "4Gen"}>
+        <OptionRegion clicked={region === '4Gen'}>
           <img src={SinnohPoke} alt="pokedex region" />
           <input
             type="radio"
             value="4Gen"
             name="Sinnoh"
-            checked={region === "Sinnoh"}
+            checked={region === 'Sinnoh'}
             onChange={checkboxHandler}
           />
           Sinnoh

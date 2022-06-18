@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StopwatchWrapper = styled.div`
   position: absolute;
@@ -40,7 +40,7 @@ export const ProgressBar = styled.div`
 
 export const NumbersWrapper = styled.div`
   & span {
-    font-family: "ZCOOL QingKe HuangYou", cursive;
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
     font-size: 1.2rem;
     font-weight: 600;
     letter-spacing: 1px;

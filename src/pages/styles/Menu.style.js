@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ContainerLogin = styled.div`
   display: flex;
@@ -30,8 +30,8 @@ export const OptionRegion = styled.label`
   position: relative;
   width: 17rem;
   height: 2.7rem;
-  background-color: ${({ clicked }) => (clicked ? "#010101;" : "#f8f8f8")};
-  color: ${({ clicked }) => (clicked ? "#f8f8f8;" : "#010101")};
+  background-color: ${({ clicked }) => (clicked ? '#010101;' : '#f8f8f8')};
+  color: ${({ clicked }) => (clicked ? '#f8f8f8;' : '#010101')};
   border-radius: 2rem;
   vertical-align: middle;
   text-align: center;
@@ -57,14 +57,14 @@ export const OptionRegion = styled.label`
   }
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     right: 0;
     transition: 0.3s;
     width: 4rem;
     height: 100%;
-    background-color: ${({ clicked }) => (clicked ? "#2d1f1f" : "#f8f8f8")};
+    background-color: ${({ clicked }) => (clicked ? '#2d1f1f' : '#f8f8f8')};
     clip-path: polygon(45% 0, 100% 0, 100% 50%, 100% 100%, 10% 100%);
     border-radius: 0 2rem 2rem 0;
   }
@@ -84,7 +84,7 @@ export const MessageBox = styled.p`
   vertical-align: middle;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     right: 0;
@@ -94,7 +94,7 @@ export const MessageBox = styled.p`
     background-color: #2d1f1f;
   }
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -120,4 +120,5 @@ export const StartButton = styled.button`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset -1px -1px 0px 2px #366da0,
     inset 2px 2px 1px 1px #7dbbe4;
   border-radius: 13px;
+  cursor: pointer;
 `;
