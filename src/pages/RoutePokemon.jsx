@@ -38,6 +38,7 @@ const RoutePokemon = ({
   loading,
   roundPokemons,
   showModal,
+  answer,
 }) => {
   const [scoredTime, setScoredTime] = useState(0);
 
@@ -67,9 +68,11 @@ const RoutePokemon = ({
       ) : (
         <>
           <PokedexContainer>
-            <PokedexScreen />
+            <PokedexScreen answer={answer} />
             {pokemonToCatch ? (
               <PokemonFigure
+                draggable="false"
+                answer={answer}
                 src={pokemonToCatch.sprites.other.home.front_default}
                 alt={pokemonToCatch.name}
               />

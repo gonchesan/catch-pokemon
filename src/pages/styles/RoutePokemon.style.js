@@ -42,9 +42,33 @@ export const PokedexMachineRight = styled.img`
   right: -73%;
 `;
 
+const handleColorType = (color) => {
+  switch (color) {
+    case 'CORRECT':
+      return {
+        backgroundColor: '#35C28C',
+        boxShadow: '0 0 4px #35C28C, 0 0 50px #35C28C',
+      };
+      break;
+    case 'INCORRECT':
+      return {
+        backgroundColor: '#F34F49',
+        boxShadow: '0 0 4px #F34F49, 0 0 50px #F34F49',
+      };
+      break;
+    default:
+      return {
+        backgroundColor: '#3398da',
+        boxShadow: '0 0 4px #3398da, 0 0 30px #3398da',
+      };
+      break;
+  }
+};
+
 export const PokedexScreen = styled.div`
   position: absolute;
-  background-color: #3398da;
+  background-color: ${({ answer }) => handleColorType(answer).backgroundColor};
+  box-shadow: ${({ answer }) => handleColorType(answer).boxShadow};
   border-radius: 7px;
   width: 11em;
   left: calc(50% - 6.3em);
@@ -62,6 +86,7 @@ export const OptionsContainer = styled.div`
 `;
 
 export const OptionPokemon = styled.button`
+  cursor: pointer;
   float: right;
   width: 80%;
   height: 2.65rem;
