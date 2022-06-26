@@ -22,7 +22,6 @@ import { fetchPokemonData, fetchPokemons } from './utils/services';
 //* Assets sounds
 import soundError from './assets/audio/wrongAnswer.mp3';
 import soundSuccess from './assets/audio/rightAnswer.mp3';
-import ModalEndGame from './components/ModalEndGame';
 
 const App = () => {
   const [region, setRegion] = useState(''); //?  Region to play
@@ -37,6 +36,7 @@ const App = () => {
   const [allTheNames, setAllTheNames] = useState({}); //? Data cleaned to play: T he correct name and id
   const [pokedex, setPokedex] = useState([]); //? Caught pokemons
   const [showModal, setShowModal] = useState(false); //? Modal game over
+  const [answer, setAnswer] = useState(''); //? Set the answer correct or incorrect
 
   //* Object ternary operator
   const generations = {
@@ -111,9 +111,16 @@ const App = () => {
     if (pokemonToCatch.id === index) {
       setCaughtPokemons(caughtPokemons + 1);
       playAudio(soundSuccess);
+      setAnswer('CORRECT');
+      setTimeout(() => {
+        setAnswer('');
+      }, 500);
     } else {
-      //TODO Make animation or play an audio to display a wrong answer
       playAudio(soundError);
+      setAnswer('INCORRECT');
+      setTimeout(() => {
+        setAnswer('');
+      }, 500);
     }
   };
 
@@ -150,8 +157,10 @@ const App = () => {
   useEffect(() => {
     if (roundPokemons.length > 0) {
       const item = allPokemons.find((poke) => poke.id === roundPokemons[0]);
-      setPokemonToCatch(item);
-      setOptionsToCatch(getThreeOptions(item.id));
+      setTimeout(() => {
+        setPokemonToCatch(item);
+        setOptionsToCatch(getThreeOptions(item.id));
+      }, 500);
     } else {
       if (startGame) {
         setShowModal(true);
@@ -190,6 +199,7 @@ const App = () => {
                   loading={loading}
                   roundPokemons={roundPokemons}
                   showModal={showModal}
+                  answer={answer}
                 />
               }
             />
