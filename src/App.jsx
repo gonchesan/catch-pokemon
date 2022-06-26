@@ -40,10 +40,10 @@ const App = () => {
 
   //* Object ternary operator
   const generations = {
-    '1Gen': { quantity: '151', since: '0', firstId: 1, lastId: 150 },
-    '2Gen': { quantity: '100', since: '151', firstId: 151, lastId: 251 },
+    '1Gen': { quantity: '151', since: '0', firstId: 1, lastId: 151 },
+    '2Gen': { quantity: '100', since: '151', firstId: 152, lastId: 251 },
     '3Gen': { quantity: '135', since: '251', firstId: 252, lastId: 386 },
-    '4Gen': { quantity: '107', since: '386', firstId: 387, lastId: 493 },
+    '4Gen': { quantity: '108', since: '386', firstId: 387, lastId: 494 },
   };
 
   //Fn Get the initial Pokemons to play
@@ -157,8 +157,10 @@ const App = () => {
   useEffect(() => {
     if (roundPokemons.length > 0) {
       const item = allPokemons.find((poke) => poke.id === roundPokemons[0]);
+      console.log(allPokemons);
       setTimeout(() => {
         setPokemonToCatch(item);
+        console.log(item.id);
         setOptionsToCatch(getThreeOptions(item.id));
       }, 500);
     } else {
