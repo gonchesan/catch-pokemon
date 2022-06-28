@@ -21,9 +21,37 @@ export const BackgroundLogin = styled.img`
 `;
 
 export const LogoLogin = styled.img`
-  width: 7rem;
-  height: 7rem;
-  margin-bottom: 3rem;
+  width: 6rem;
+  height: 6rem;
+  margin-bottom: 2rem;
+`;
+
+export const FormLogin = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const ButtonLogin = styled.button`
+  height: 2.65rem;
+  padding: 0px 85px;
+  margin-top: 0.5rem;
+  font-size: 1.3rem;
+  line-height: 2.2rem;
+  vertical-align: middle;
+  color: #ecf7fd;
+  text-shadow: 1px 1px 2px rgba(48, 48, 48, 0.96);
+  background: ${({ secondary }) =>
+    secondary
+      ? 'linear-gradient(180deg, #ee9a00 38.02%, #fdd12f 100%)'
+      : 'linear-gradient(180deg, #3892DC 38.02%, #82BFDA 100%)'};
+  border: 1.5px solid ${({ secondary }) => (secondary ? '#8c5000' : '#315670')};
+  outline: none;
+  box-shadow: ${({ secondary }) =>
+    secondary
+      ? '0px 4px 4px rgba(0, 0, 0, 0.25), inset -1px -1px 0px 2px #8c5000, inset 1px 2px 1px 2px #ffd740'
+      : '0px 4px 4px rgba(0, 0, 0, 0.25), inset -1px -1px 0px 2px #366DA0, inset 1px 2px 1px 2px #7DBBE4'};
+  border-radius: 13px;
+  cursor: pointer;
 `;
 
 export const OptionRegion = styled.label`
@@ -78,7 +106,7 @@ export const MessageBox = styled.p`
   height: 2.3rem;
   width: 17rem;
   text-align: center;
-  margin-top: 3rem;
+  margin-top: 2rem;
   font-size: 1.2rem;
   line-height: 2.2rem;
   vertical-align: middle;
@@ -109,7 +137,7 @@ export const MessageBox = styled.p`
 export const StartButton = styled.button`
   width: 17rem;
   height: 2.65rem;
-  margin-top: 2.7rem;
+  margin-top: 1.7rem;
   font-size: 1.3rem;
   line-height: 2.2rem;
   vertical-align: middle;
@@ -121,4 +149,28 @@ export const StartButton = styled.button`
     inset 2px 2px 1px 1px #7dbbe4;
   border-radius: 13px;
   cursor: pointer;
+`;
+
+export const FooterMenu = styled.div`
+  position: fixed;
+  bottom: 2%;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+
+  & div {
+    cursor: pointer;
+    background: #262626;
+    border: 2.5px solid #f8f8f8;
+    box-shadow: 0px 0px 0px 2px #262626, inset 0px 0px 0px 2px #131313;
+    height: 56px;
+    width: 56px;
+    border-radius: 6px;
+
+    & img {
+      padding: 6px;
+      width: 100%;
+      height: 100%;
+    }
+  }
 `;
