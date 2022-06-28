@@ -157,10 +157,8 @@ const App = () => {
   useEffect(() => {
     if (roundPokemons.length > 0) {
       const item = allPokemons.find((poke) => poke.id === roundPokemons[0]);
-      console.log(allPokemons);
       setTimeout(() => {
         setPokemonToCatch(item);
-        console.log(item.id);
         setOptionsToCatch(getThreeOptions(item.id));
       }, 500);
     } else {

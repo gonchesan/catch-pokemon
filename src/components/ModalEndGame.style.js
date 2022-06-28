@@ -42,12 +42,8 @@ export const ModalContent = styled.div`
   box-shadow: 0px 0px 0px 2px #262626, rgba(0, 0, 0, 0.19) 0px 10px 20px,
     rgba(0, 0, 0, 0.23) 0px 6px 6px, inset 0px 0px 0px 1px #131313;
   border-radius: 8px;
-  /* position: fixed; */
   transform: translateY(25vh);
-
-  /* top: 50%; */
   margin: auto;
-  /* transform: translateX(55%); */
   background-color: #eaeaea;
   width: 24rem;
   -webkit-animation-name: slideIn;
@@ -104,28 +100,21 @@ export const ModalGrid = styled.div`
 `;
 
 export const Column = styled.div`
-  /* background-color: #393b43; */
   background-color: #393b43;
   color: #3a3a3a;
-  /* text-shadow: 0 1px 2px rgb(0 0 0 / 65%); */
   border: 0.5px solid #393b43;
   border-radius: 24px;
-  /* padding: 0px 12px; */
-  /* margin: auto; */
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 
   & img {
-    /* margin-right: 12px; */
     margin: 0px 12px;
     height: 24px;
     width: 24px;
   }
   & span {
-    /* font-family: 'ZCOOL QingKe HuangYou', cursive; */
     font-weight: 600;
-    /* background-color: #c14030; */
     clip-path: polygon(15% 0%, 100% 0, 100% 100%, 1% 100%);
     background-color: #fefefe;
     width: 100%;
