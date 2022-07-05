@@ -7,6 +7,7 @@ export const ContainerGame = styled.div`
   flex-direction: column;
   align-items: center;
   height: 100vh;
+  overflow-y: hidden;
 `;
 
 export const BackgroundGame = styled.img`
@@ -31,7 +32,7 @@ export const PokedexMachine = styled.img`
   height: auto;
   position: relative;
   margin: 0 auto;
-  margin-top: 3.5rem;
+  margin-top: 1.5rem;
 `;
 
 export const PokedexMachineRight = styled.img`
@@ -72,7 +73,7 @@ export const PokedexScreen = styled.div`
   border-radius: 7px;
   width: 11em;
   left: calc(50% - 6.3em);
-  bottom: calc(50% - 4.7em);
+  bottom: calc(50% - 3.7em);
   z-index: 5;
   height: 8em;
 `;
@@ -82,7 +83,7 @@ export const OptionsContainer = styled.div`
   width: 85vw;
   height: 8em;
   margin: 0 auto;
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
 `;
 
 export const OptionPokemon = styled.button`
@@ -199,7 +200,7 @@ export const PokemonFigure = styled.img`
   border-radius: 7px;
   width: 11.5em;
   left: calc(50% - 6.6em);
-  bottom: calc(50% - 4.5em);
+  bottom: calc(50% - 3.5em);
   z-index: 5;
   height: 8.15em;
   object-fit: contain;
