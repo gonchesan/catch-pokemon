@@ -1,9 +1,12 @@
 import { GithubCorner } from './CornerRibbon.style';
 
 const CornerRibbon = () => {
-  // TODO Change the href url for the Repo on github
   return (
-    <GithubCorner href="https://your-url" aria-label="View source on GitHub">
+    <GithubCorner
+      target="_blank"
+      href="https://github.com/gmsanchezgaray/catch-pokemon/"
+      aria-label="View source on GitHub"
+    >
       <svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true">
         <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
         <path

@@ -158,7 +158,7 @@ export const FooterMenu = styled.div`
   display: flex;
   justify-content: space-between;
 
-  & div {
+  & button {
     cursor: pointer;
     background: #262626;
     border: 2.5px solid #f8f8f8;

@@ -117,12 +117,13 @@ const Menu = ({ region, setRegion, getAllPokemons, setIsRegionSelected }) => {
       ) : null}
 
       <FooterMenu>
-        <div>
+        <button>
           <img src={TrophyIcon} />
-        </div>
-        <div>
+        </button>
+
+        <button>
           <img src={Settings} />
-        </div>
+        </button>
       </FooterMenu>
     </ContainerLogin>
   );
