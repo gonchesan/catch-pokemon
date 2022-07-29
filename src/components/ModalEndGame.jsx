@@ -12,7 +12,14 @@ import PokemonWatch from '../assets/images/Icon-Watch.svg';
 import PokeBall from '../assets/images/Icon-Pokeball.svg';
 import PokePoints from '../assets/images/icon-pokepoints.svg';
 import { TimePipe } from '../pipes/timePipe';
+import { useNavigate } from 'react-router-dom';
+
 const ModalEndGame = ({ showModal, caughtPokemons, scoredTime }) => {
+  let navigate = useNavigate();
+
+  const backToMenu = () => {
+    navigate('/menu');
+  };
   return (
     <Modal visible={showModal}>
       <ModalContent>
@@ -38,7 +45,9 @@ const ModalEndGame = ({ showModal, caughtPokemons, scoredTime }) => {
                 {caughtPokemons * Math.round(scoredTime / 100)}
               </span>
             </Column>
-            <ModalButton secondary>Menu</ModalButton>
+            <ModalButton onClick={backToMenu} secondary>
+              Menu
+            </ModalButton>
             <ModalButton>Retry</ModalButton>
           </ModalGrid>
         </ModalBody>

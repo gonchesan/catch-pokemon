@@ -18,13 +18,6 @@ export const shuffle = (array) => {
   return array;
 };
 
-// export const randomId = (remainingPokemons) => {
-//   if (remainingPokemons) {
-//     return Math.floor(Math.random() * remainingPokemons.length);
-//   } else {
-//     return Math.floor(Math.random() * 151);
-//   }
-// };
 export const randomId = (min, max) => {
   return Math.floor(Math.random() * (max - min)) + min;
 };
