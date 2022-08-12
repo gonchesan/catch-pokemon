@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   Column,
   Modal,
@@ -12,7 +12,9 @@ import PokemonWatch from '../assets/images/Icon-Watch.svg';
 import PokeBall from '../assets/images/Icon-Pokeball.svg';
 import PokePoints from '../assets/images/icon-pokepoints.svg';
 import { TimePipe } from '../pipes/timePipe';
-const ModalEndGame = ({ showModal, caughtPokemons, scoredTime }) => {
+import { DataContext } from '../context/DataContext';
+const ModalEndGame = () => {
+  const { showModal, caughtPokemons, scoredTime } = useContext(DataContext);
   return (
     <Modal visible={showModal}>
       <ModalContent>

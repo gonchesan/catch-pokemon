@@ -18,13 +18,6 @@ export const shuffle = (array) => {
   return array;
 };
 
-// export const randomId = (remainingPokemons) => {
-//   if (remainingPokemons) {
-//     return Math.floor(Math.random() * remainingPokemons.length);
-//   } else {
-//     return Math.floor(Math.random() * 151);
-//   }
-// };
 export const randomId = (min, max) => {
   return Math.floor(Math.random() * (max - min)) + min;
 };
@@ -33,4 +26,11 @@ export const randomId = (min, max) => {
 export const returnData = (array, index) => {
   let dataToFind = array.find((item) => item.id === index);
   return dataToFind;
+};
+
+export const generations = {
+  '1Gen': { quantity: '151', since: '0', firstId: 1, lastId: 151 },
+  '2Gen': { quantity: '100', since: '151', firstId: 152, lastId: 251 },
+  '3Gen': { quantity: '135', since: '251', firstId: 252, lastId: 386 },
+  '4Gen': { quantity: '108', since: '386', firstId: 387, lastId: 494 },
 };

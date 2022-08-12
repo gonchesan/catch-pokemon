@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 //* Styles
@@ -24,10 +24,21 @@ import Logo from '../assets/images/logo-login.svg';
 import CornerRibbon from '../components/CornerRibbon';
 import TrophyIcon from '../assets/images/icon-Trophy.svg';
 import Settings from '../assets/images/icon-settings.svg';
+import { DataContext } from '../context/DataContext';
 
-const Menu = ({ region, setRegion, getAllPokemons, setIsRegionSelected }) => {
-  const [readyToPlay, setReadyToPlay] = useState(false);
-  const [showRegions, setShowRegions] = useState(false);
+const Menu = () => {
+  const {
+    region,
+    setRegion,
+    getAllPokemons,
+    setIsRegionSelected,
+    readyToPlay,
+    setReadyToPlay,
+    showRegions,
+    setShowRegions,
+  } = useContext(DataContext);
+  // const [readyToPlay, setReadyToPlay] = useState(false);
+  // const [showRegions, setShowRegions] = useState(false);
   const navigate = useNavigate();
 
   const showValue = (event) => setRegion(event.target.value);

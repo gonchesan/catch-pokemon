@@ -26,21 +26,25 @@ import WallpaperPlaying from '../assets/images/Background.jpg';
 import PokedexPartLeft from '../assets/images/Pokedex-part-a.png';
 import PokedexPartRight from '../assets/images/Pokedex-part-b.png';
 import ModalEndGame from '../components/ModalEndGame';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { DataContext } from '../context/DataContext';
 
-const RoutePokemon = ({
-  pokemonToCatch,
-  optionsToCatch,
-  allTheNames,
-  handleOptions,
-  startGame,
-  caughtPokemons,
-  loading,
-  roundPokemons,
-  showModal,
-  answer,
-}) => {
-  const [scoredTime, setScoredTime] = useState(0);
+const RoutePokemon = () => {
+  const {
+    pokemonToCatch,
+    optionsToCatch,
+    allTheNames,
+    handleOptions,
+    startGame,
+    caughtPokemons,
+    loading,
+    roundPokemons,
+    showModal,
+    answer,
+    scoredTime,
+    setScoredTime,
+  } = useContext(DataContext);
+  // const [scoredTime, setScoredTime] = useState(0);
 
   return (
     <ContainerGame>
@@ -53,13 +57,8 @@ const RoutePokemon = ({
       ) : null}
 
       <BackgroundGame src={WallpaperPlaying} />
-      <Score caughtPokemons={caughtPokemons} />
-      <Stopwatch
-        startGame={startGame}
-        loading={loading}
-        roundPokemons={roundPokemons}
-        setScoredTime={setScoredTime}
-      />
+      <Score />
+      <Stopwatch />
       {loading ? (
         <div>
           {/* //TODO Make a charging screen */}

@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { DataContext } from '../context/DataContext';
 import { TimePipe } from '../pipes/timePipe';
 
 //* Styles
@@ -8,7 +9,9 @@ import {
   StopwatchWrapper,
 } from './Stopwatch.style';
 
-const Stopwatch = ({ startGame, loading, roundPokemons, setScoredTime }) => {
+const Stopwatch = () => {
+  const { startGame, loading, roundPokemons, setScoredTime } =
+    useContext(DataContext);
   const [time, setTime] = useState(30000);
   const [running, setRunning] = useState(false);
 
