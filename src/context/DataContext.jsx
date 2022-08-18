@@ -6,6 +6,8 @@ import { fetchPokemonData, fetchPokemons } from '../utils/services';
 //* Assets sounds
 import soundError from '../assets/audio/wrongAnswer.mp3';
 import soundSuccess from '../assets/audio/rightAnswer.mp3';
+//* Fonts
+import WebFont from 'webfontloader';
 
 export const DataContext = createContext();
 
@@ -23,9 +25,11 @@ export const DataProvider = ({ children }) => {
   const [pokedex, setPokedex] = useState([]); //? Caught pokemons
   const [showModal, setShowModal] = useState(false); //? Modal game over
   const [answer, setAnswer] = useState(''); //? Set the answer correct or incorrect
-  const [scoredTime, setScoredTime] = useState(0);
-  const [readyToPlay, setReadyToPlay] = useState(false);
-  const [showRegions, setShowRegions] = useState(false);
+  const [scoredTime, setScoredTime] = useState(0); //? Set the scored time when the game is over
+  const [readyToPlay, setReadyToPlay] = useState(false); //? Boolean when the region is selected
+  const [showRegions, setShowRegions] = useState(false); //? Boolean who show the regions when the game mode was selected
+  const [time, setTime] = useState(30000);
+  const [running, setRunning] = useState(false);
 
   //Fn Get the initial Pokemons to play
   const getAllPokemons = async () => {
@@ -128,11 +132,11 @@ export const DataProvider = ({ children }) => {
   useEffect(() => {
     setShowModal(false);
 
-    // WebFont.load({
-    //   google: {
-    //     families: ['Saira Condensed', 'ZCOOL QingKe HuangYou'],
-    //   },
-    // });
+    WebFont.load({
+      google: {
+        families: ['Saira Condensed', 'ZCOOL QingKe HuangYou'],
+      },
+    });
   }, []);
 
   useEffect(() => {
@@ -187,8 +191,10 @@ export const DataProvider = ({ children }) => {
         setShowRegions,
         getAllPokemons,
         handleOptions,
-        scoredTime,
-        setScoredTime,
+        time,
+        setTime,
+        running,
+        setRunning,
       }}
     >
       {children}

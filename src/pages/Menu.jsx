@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 //* Styles
@@ -37,8 +37,6 @@ const Menu = () => {
     showRegions,
     setShowRegions,
   } = useContext(DataContext);
-  // const [readyToPlay, setReadyToPlay] = useState(false);
-  // const [showRegions, setShowRegions] = useState(false);
   const navigate = useNavigate();
 
   const showValue = (event) => setRegion(event.target.value);

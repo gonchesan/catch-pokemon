@@ -1,7 +1,4 @@
-import { useEffect } from 'react';
-
-//* Fonts and global styles
-import WebFont from 'webfontloader';
+//* Global styles
 import { GlobalStyles } from './globalStyles';
 
 //* Views game
@@ -19,13 +16,6 @@ import { DataProvider } from './context/DataContext';
 
 const App = () => {
   //Fn import font via webfontloader
-  useEffect(() => {
-    WebFont.load({
-      google: {
-        families: ['Saira Condensed', 'ZCOOL QingKe HuangYou'],
-      },
-    });
-  }, []);
 
   return (
     <>

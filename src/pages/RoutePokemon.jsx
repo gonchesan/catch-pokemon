@@ -26,7 +26,7 @@ import WallpaperPlaying from '../assets/images/Background.jpg';
 import PokedexPartLeft from '../assets/images/Pokedex-part-a.png';
 import PokedexPartRight from '../assets/images/Pokedex-part-b.png';
 import ModalEndGame from '../components/ModalEndGame';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { DataContext } from '../context/DataContext';
 
 const RoutePokemon = () => {
@@ -38,13 +38,10 @@ const RoutePokemon = () => {
     startGame,
     caughtPokemons,
     loading,
-    roundPokemons,
     showModal,
     answer,
     scoredTime,
-    setScoredTime,
   } = useContext(DataContext);
-  // const [scoredTime, setScoredTime] = useState(0);
 
   return (
     <ContainerGame>
