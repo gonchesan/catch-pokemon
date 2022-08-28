@@ -13,39 +13,42 @@ import PokeBall from '../assets/images/Icon-Pokeball.svg';
 import PokePoints from '../assets/images/icon-pokepoints.svg';
 import { TimePipe } from '../pipes/timePipe';
 import { DataContext } from '../context/DataContext';
+import ReactPortal from './ReactPortal';
 const ModalEndGame = () => {
   const { showModal, caughtPokemons, scoredTime } = useContext(DataContext);
   return (
-    <Modal visible={showModal}>
-      <ModalContent>
-        <ModalHeader>
-          <h2>Game Over</h2>
-        </ModalHeader>
-        <ModalBody>
-          <ModalGrid>
-            <Column>
-              <img src={PokeBall} />
-              <span>
-                <small>x</small> {caughtPokemons}
-              </span>
-            </Column>
-            <Column>
-              <img src={PokemonWatch} />
-              <span>{TimePipe(scoredTime)}"</span>
-            </Column>
-            <Column>
-              <span>Score</span>
-              <span>
-                <img src={PokePoints} />
-                {caughtPokemons * Math.round(scoredTime / 100)}
-              </span>
-            </Column>
-            <ModalButton secondary>Menu</ModalButton>
-            <ModalButton>Retry</ModalButton>
-          </ModalGrid>
-        </ModalBody>
-      </ModalContent>
-    </Modal>
+    <ReactPortal wrapperId="modal-endgame">
+      <Modal visible={showModal}>
+        <ModalContent>
+          <ModalHeader>
+            <h2>Game Over</h2>
+          </ModalHeader>
+          <ModalBody>
+            <ModalGrid>
+              <Column>
+                <img src={PokeBall} />
+                <span>
+                  <small>x</small> {caughtPokemons}
+                </span>
+              </Column>
+              <Column>
+                <img src={PokemonWatch} />
+                <span>{TimePipe(scoredTime)}"</span>
+              </Column>
+              <Column>
+                <span>Score</span>
+                <span>
+                  <img src={PokePoints} />
+                  {caughtPokemons * Math.round(scoredTime / 100)}
+                </span>
+              </Column>
+              <ModalButton secondary>Menu</ModalButton>
+              <ModalButton>Retry</ModalButton>
+            </ModalGrid>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+    </ReactPortal>
   );
 };
 

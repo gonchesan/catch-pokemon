@@ -19,6 +19,7 @@ const Stopwatch = () => {
     setTime,
     running,
     setRunning,
+    setShowModal,
   } = useContext(DataContext);
 
   useEffect(() => {
@@ -28,6 +29,7 @@ const Stopwatch = () => {
         setTime((prevTime) => {
           if (prevTime === 0) {
             setRunning(false);
+            setShowModal(true);
             return prevTime;
           }
           return prevTime - 10;

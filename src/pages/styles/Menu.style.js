@@ -29,29 +29,7 @@ export const LogoLogin = styled.img`
 export const FormLogin = styled.div`
   display: flex;
   flex-direction: column;
-`;
-
-export const ButtonLogin = styled.button`
-  height: 2.65rem;
-  padding: 0px 85px;
-  margin-top: 0.5rem;
-  font-size: 1.3rem;
-  line-height: 2.2rem;
-  vertical-align: middle;
-  color: #ecf7fd;
-  text-shadow: 1px 1px 2px rgba(48, 48, 48, 0.96);
-  background: ${({ secondary }) =>
-    secondary
-      ? 'linear-gradient(180deg, #ee9a00 38.02%, #fdd12f 100%)'
-      : 'linear-gradient(180deg, #3892DC 38.02%, #82BFDA 100%)'};
-  border: 1.5px solid ${({ secondary }) => (secondary ? '#8c5000' : '#315670')};
-  outline: none;
-  box-shadow: ${({ secondary }) =>
-    secondary
-      ? '0px 4px 4px rgba(0, 0, 0, 0.25), inset -1px -1px 0px 2px #8c5000, inset 1px 2px 1px 2px #ffd740'
-      : '0px 4px 4px rgba(0, 0, 0, 0.25), inset -1px -1px 0px 2px #366DA0, inset 1px 2px 1px 2px #7DBBE4'};
-  border-radius: 13px;
-  cursor: pointer;
+  width: 14rem;
 `;
 
 export const OptionRegion = styled.label`
@@ -134,23 +112,6 @@ export const MessageBox = styled.p`
   }
 `;
 
-export const StartButton = styled.button`
-  width: 17rem;
-  height: 2.65rem;
-  margin-top: 1.7rem;
-  font-size: 1.3rem;
-  line-height: 2.2rem;
-  vertical-align: middle;
-  color: #ecf7fd;
-  text-shadow: 1px 1px 0px #807f84;
-  background: linear-gradient(180deg, #3892dc 38.02%, #82bfda 100%);
-  border: 1.5px solid #315670;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset -1px -1px 0px 2px #366da0,
-    inset 2px 2px 1px 1px #7dbbe4;
-  border-radius: 13px;
-  cursor: pointer;
-`;
-
 export const FooterMenu = styled.div`
   position: fixed;
   bottom: 2%;
@@ -173,4 +134,26 @@ export const FooterMenu = styled.div`
       height: 100%;
     }
   }
+`;
+
+export const BackButton = styled.button`
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  width: 40px;
+  height: 40px;
+  height: 2.65rem;
+  margin-top: 0.5rem;
+  font-size: 1.3rem;
+  vertical-align: middle;
+  text-shadow: 1px 1px 2px rgba(48, 48, 48, 0.96);
+  background: linear-gradient(180deg, #9ca4ab 38.02%, #c4c6c8 100%);
+  border: 1.5px solid #393b43;
+  outline: none;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset -1px -1px 0px 1px #6a6a6a,
+    inset 2px 2px 1px 3px #c4c6c8;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
 `;

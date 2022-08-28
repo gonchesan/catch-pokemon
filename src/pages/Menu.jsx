@@ -1,17 +1,16 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 //* Styles
 import {
+  BackButton,
   BackgroundLogin,
-  ButtonLogin,
   ContainerLogin,
   FooterMenu,
   FormLogin,
   LogoLogin,
   MessageBox,
   OptionRegion,
-  StartButton,
 } from './styles/Menu.style';
 
 //* Assets
@@ -25,8 +24,13 @@ import CornerRibbon from '../components/CornerRibbon';
 import TrophyIcon from '../assets/images/icon-Trophy.svg';
 import Settings from '../assets/images/icon-settings.svg';
 import { DataContext } from '../context/DataContext';
+import HighScoreModal from '../components/HighScoreModal';
+import { Button } from '../globalStyles';
+import BackIcon from '../assets/images/back-icon.svg';
 
 const Menu = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const {
     region,
     setRegion,
@@ -57,17 +61,23 @@ const Menu = () => {
 
   return (
     <ContainerLogin>
+      <HighScoreModal handleClose={() => setIsOpen(false)} isOpen={isOpen} />
       <CornerRibbon />
       <BackgroundLogin src={WallpaperLogin} />
+      {showRegions && (
+        <BackButton onClick={() => setShowRegions(false)}>
+          <img src={BackIcon} alt="" />
+        </BackButton>
+      )}
       <LogoLogin src={Logo} alt="logo for login" />
       {!showRegions ? (
         <FormLogin>
-          <ButtonLogin onClick={gameMode} name="guest">
+          <Button onClick={gameMode} name="guest">
             Play as Guest
-          </ButtonLogin>
-          <ButtonLogin onClick={gameMode} name="login" secondary>
+          </Button>
+          <Button onClick={gameMode} name="login" secondary>
             Log In
-          </ButtonLogin>
+          </Button>
         </FormLogin>
       ) : null}
       {showRegions ? (
@@ -120,13 +130,13 @@ const Menu = () => {
           {!readyToPlay ? (
             <MessageBox>Select a region to start playing</MessageBox>
           ) : (
-            <StartButton onClick={startPlay}>Play</StartButton>
+            <Button onClick={startPlay}>Play</Button>
           )}
         </div>
       ) : null}
 
       <FooterMenu>
-        <button>
+        <button onClick={() => setIsOpen(true)}>
           <img src={TrophyIcon} />
         </button>
 

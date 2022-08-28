@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const StopwatchWrapper = styled.div`
   position: absolute;
   top: 1%;
-  right: 18%;
+  right: 5%;
   z-index: 15;
   background-color: #2e323b;
   box-shadow: 0px 0px 5px 2px #2e323b;
@@ -18,7 +18,7 @@ export const StopwatchWrapper = styled.div`
 export const ProgressBar = styled.div`
   position: absolute;
   top: 1%;
-  right: 18%;
+  right: 5%;
   z-index: 15;
   border-radius: 50%;
   width: 70px;
