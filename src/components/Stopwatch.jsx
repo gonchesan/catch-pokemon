@@ -29,6 +29,7 @@ const Stopwatch = () => {
         setTime((prevTime) => {
           if (prevTime === 0) {
             setRunning(false);
+            // TODO Quitar el comentario a continuacion cuando se haga la pantalla
             setShowModal(true);
             return prevTime;
           }
@@ -52,7 +53,7 @@ const Stopwatch = () => {
     if (startGame && loading) {
       setTimeout(() => {
         setRunning(true);
-      }, 1000);
+      }, 2500);
     }
   }, []);
 

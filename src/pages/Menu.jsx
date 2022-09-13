@@ -27,6 +27,8 @@ import { DataContext } from '../context/DataContext';
 import HighScoreModal from '../components/HighScoreModal';
 import { Button } from '../globalStyles';
 import BackIcon from '../assets/images/back-icon.svg';
+import Arrow from '../assets/images/arrow.svg';
+import DoorScreen from '../components/DoorScreen';
 
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -84,6 +86,7 @@ const Menu = () => {
         <div onChange={showValue}>
           <OptionRegion clicked={region === '1Gen'}>
             <img src={KantoPoke} alt="pokedex region" />
+            {region === '1Gen' && <img src={Arrow} alt="arrow cursor" />}
             <input
               type="radio"
               value="1Gen"
@@ -95,6 +98,7 @@ const Menu = () => {
           </OptionRegion>
           <OptionRegion clicked={region === '2Gen'}>
             <img src={JohtoPoke} alt="pokedex region" />
+            {region === '2Gen' && <img src={Arrow} alt="arrow cursor" />}
             <input
               type="radio"
               value="2Gen"
@@ -106,6 +110,7 @@ const Menu = () => {
           </OptionRegion>
           <OptionRegion clicked={region === '3Gen'}>
             <img src={HoennPoke} alt="pokedex region" />
+            {region === '3Gen' && <img src={Arrow} alt="arrow cursor" />}
             <input
               type="radio"
               value="3Gen"
@@ -117,6 +122,7 @@ const Menu = () => {
           </OptionRegion>
           <OptionRegion clicked={region === '4Gen'}>
             <img src={SinnohPoke} alt="pokedex region" />
+            {region === '4Gen' && <img src={Arrow} alt="arrow cursor" />}
             <input
               type="radio"
               value="4Gen"

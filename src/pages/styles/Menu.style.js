@@ -56,6 +56,27 @@ export const OptionRegion = styled.label`
     width: 2.5rem;
     height: 2.5rem;
     filter: drop-shadow(0 0 2px #f8f8f8);
+
+    &:nth-child(2) {
+      position: absolute;
+      top: 1.25rem;
+      left: -32px;
+      width: 1.5rem;
+      height: 1.5rem;
+      pointer-events: none;
+      filter: none;
+      animation: boing 0.8s ease infinite;
+    }
+  }
+
+  @keyframes boing {
+    0%,
+    100% {
+      transform: translateY(-50%) translateX(-90%) scaleX(1) scaleY(1);
+    }
+    50% {
+      transform: translateY(-50%) translateX(-60%) scaleX(0.95) scaleY(1.1);
+    }
   }
 
   & input {

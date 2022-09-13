@@ -1,6 +1,7 @@
 //* Components
 import Score from '../components/Score';
 import Stopwatch from '../components/Stopwatch';
+import DoorScreen from '../components/DoorScreen';
 
 //* Functions
 import { returnData } from '../utils/functions';
@@ -26,7 +27,7 @@ import WallpaperPlaying from '../assets/images/Background.jpg';
 import PokedexPartLeft from '../assets/images/Pokedex-part-a.png';
 import PokedexPartRight from '../assets/images/Pokedex-part-b.png';
 import ModalEndGame from '../components/ModalEndGame';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { DataContext } from '../context/DataContext';
 
 const RoutePokemon = () => {
@@ -43,6 +44,23 @@ const RoutePokemon = () => {
     scoredTime,
   } = useContext(DataContext);
 
+  const [contentLoaded, setContentLoaded] = useState(false);
+  const handleCharge = () => {
+    if (loading) {
+      setTimeout(() => {
+        setContentLoaded(false);
+      }, 2500);
+    } else {
+      setTimeout(() => {
+        setContentLoaded(true);
+      }, 2500);
+    }
+  };
+
+  useEffect(() => {
+    handleCharge();
+  }, []);
+
   return (
     <ContainerGame>
       {showModal && startGame ? (
@@ -52,11 +70,12 @@ const RoutePokemon = () => {
           showModal={showModal}
         />
       ) : null}
+      <DoorScreen />
 
       <BackgroundGame src={WallpaperPlaying} />
       <Score />
       <Stopwatch />
-      {loading ? (
+      {contentLoaded ? (
         <div>
           {/* //TODO Make a charging screen */}
           <ModalEndGame />

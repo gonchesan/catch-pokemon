@@ -39,7 +39,7 @@ const ModalEndGame = () => {
                 <span>Score</span>
                 <span>
                   <img src={PokePoints} />
-                  {caughtPokemons * Math.round(scoredTime / 100)}
+                  {caughtPokemons * scoredTime}
                 </span>
               </Column>
               <ModalButton secondary>Menu</ModalButton>
