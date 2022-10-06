@@ -49,21 +49,13 @@ export const DoorWrapper = styled.div`
 `;
 
 export const DoorLoader = styled.div`
-  border: ${({ loadingDone }) =>
-    loadingDone ? '9px solid #eb4d4d' : '9px solid #585d63'};
-  border-top: 9px solid #eb4d4d;
-  border-bottom: 9px solid #eb4d4d;
-  margin: -40px 0 0 -40px;
   background-color: ${({ loadingDone }) =>
-    loadingDone ? '#f0f0f0' : '#2e323b'};
-  box-shadow: 0px 0px 0px 10px #f0f0f0, 0px 0px 0px 10px #f0f0f0,
-    0px 0px 0px 24px #615e69;
+    loadingDone ? '#f0f0f0' : '#9a8e8e'};
+  box-shadow: 0px 0px 0px 10px #615e69;
   padding: 0;
   width: 80px;
   height: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
   border-radius: 50%;
   position: absolute;
   top: ${({ loadingDone }) => (loadingDone ? '-20%' : '50%')};
@@ -73,30 +65,64 @@ export const DoorLoader = styled.div`
   z-index: 999;
   transition: all 0.98s;
   transition-delay: 0.3s;
-  animation: spinLoader 2s ease-in-out infinite;
 
-  @keyframes spinLoader {
+  .big-circle {
+    background-color: rgba(0, 0, 0, 0);
+    border: ${({ loadingDone }) =>
+      loadingDone
+        ? '5px solid transparent'
+        : '5px solid rgba(187, 16, 45, 0.9)'};
+    opacity: 0.9;
+    border-right: 5px solid rgba(0, 0, 0, 0);
+    border-left: 5px solid rgba(0, 0, 0, 0);
+    border-radius: 50%;
+    box-shadow: 0 0 35px #eb4d4d;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    animation: spinPulse 1s infinite linear;
+  }
+  .small-circle {
+    background-color: rgba(0, 0, 0, 0);
+    border: ${({ loadingDone }) =>
+      loadingDone
+        ? '5px solid transparent'
+        : '5px solid rgba(187, 16, 45, 0.9)'};
+    opacity: 0.9;
+    border-left: 5px solid rgba(0, 0, 0, 0);
+    border-right: 5px solid rgba(0, 0, 0, 0);
+    border-radius: 50px;
+    box-shadow: 0 0 15px #ef0404;
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+    position: relative;
+    top: -65px;
+    animation: spinCircle 1s infinite linear;
+  }
+
+  // Animations...
+  @keyframes spinPulse {
     0% {
-      transform: scale(1, 1);
-    }
-    10% {
-      transform: scale(1, 1);
-    }
-    15% {
-      transform: rotate(0deg);
+      transform: rotate(160deg);
+      opacity: 0;
+      box-shadow: 0 0 1px #2187e7;
     }
     50% {
-      transform: rotate(180deg);
-      border-top: 9px solid #585d63;
-      border-bottom: 9px solid #585d63;
-    }
-    75% {
-      transform: rotate(0deg);
+      transform: rotate(145deg);
+      opacity: 1;
     }
     100% {
+      transform: rotate(-320deg);
+      opacity: 0;
+    }
+  }
+  @keyframes spinCircle {
+    from {
       transform: rotate(0deg);
-      border-top: 9px solid #eb4d4d;
-      border-bottom: 9px solid #eb4d4d;
+    }
+    to {
+      transform: rotate(360deg);
     }
   }
 `;

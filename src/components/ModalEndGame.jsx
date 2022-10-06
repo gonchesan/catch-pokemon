@@ -14,8 +14,48 @@ import PokePoints from '../assets/images/icon-pokepoints.svg';
 import { TimePipe } from '../pipes/timePipe';
 import { DataContext } from '../context/DataContext';
 import ReactPortal from './ReactPortal';
+import { useNavigate } from 'react-router-dom';
 const ModalEndGame = () => {
-  const { showModal, caughtPokemons, scoredTime } = useContext(DataContext);
+  // const { showModal, caughtPokemons, scoredTime } = useContext(DataContext);
+  const {
+    showModal,
+    caughtPokemons,
+    scoredTime,
+    setRegion,
+    setIsRegionSelected,
+    setCaughtPokemons,
+    setStartGame,
+    setOptionsToCatch,
+    setRoundPokemons,
+    setLoading,
+    setAllTheNames,
+    setPokedex,
+    setReadyToPlay,
+    setShowRegions,
+    setTime,
+    setRunning,
+    setShowModal,
+  } = useContext(DataContext);
+
+  const navigate = useNavigate();
+  const goToMenu = () => {
+    setRegion('');
+    setIsRegionSelected(false);
+    setStartGame(false);
+    setCaughtPokemons(0);
+    setOptionsToCatch([]);
+    setRoundPokemons([]);
+    setLoading(false);
+    setAllTheNames({});
+    setPokedex([]);
+    setReadyToPlay(false);
+    setShowRegions(false);
+    setTime(30000);
+    setRunning(false);
+    setShowModal(false);
+    navigate('/menu');
+  };
+  const retry = () => {};
   return (
     <ReactPortal wrapperId="modal-endgame">
       <Modal visible={showModal}>
@@ -42,8 +82,10 @@ const ModalEndGame = () => {
                   {caughtPokemons * scoredTime}
                 </span>
               </Column>
-              <ModalButton secondary>Menu</ModalButton>
-              <ModalButton>Retry</ModalButton>
+              <ModalButton secondary onClick={goToMenu}>
+                Menu
+              </ModalButton>
+              <ModalButton onClick={retry}>Retry</ModalButton>
             </ModalGrid>
           </ModalBody>
         </ModalContent>
